@@ -9,6 +9,7 @@ $(function () {
             return
         }
         $.ajax({
+
             url:'http://localhost:8080/api/v1/admin/user/login',
             type:'post',
             data:{username,password},
@@ -18,7 +19,8 @@ $(function () {
                     $('.msg').text(res.msg)
                     $('#myModal').modal('show')
                     $('#myModal').on('hidden.bs.modal', function (e) {
-                        //console.log(res);
+                        console.log(res);
+                        localStorage.setItem('bignewsToken',res.token)
                         location='./index.html'
                     })
                 }else{
