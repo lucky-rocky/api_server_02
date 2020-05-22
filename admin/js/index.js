@@ -23,4 +23,25 @@ $(function () {
         //     }
         // }
     })
+
+    $('.level01').on('click',function () {//箭头函数this指向固定,这里会出问题
+        $(this).addClass('active').siblings('div').removeClass('active')
+        if($(this).next().hasClass('level02')){
+            $(this).next().slideToggle()
+            $(this).find('b').toggleClass('rotate0')
+        }else{
+            $('.level02').slideUp()
+            $('.level01').find('b').removeClass('rotate0')
+            $('.level02 li').removeClass('active')
+        }
+
+    })
+
+    $('.level02 li').on('click',function () {
+        $(this).addClass('active').siblings('li').removeClass('active')
+    })
+
+
+
+
 })
