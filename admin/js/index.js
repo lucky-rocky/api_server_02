@@ -1,6 +1,6 @@
 $(function () {
     $.ajax({
-        url:'http://localhost:8080/api/v1/admin/user/info',
+        url:BigNew.user_info,
         dataType:'json',
         //forbidden 没token
         // headers:{Authorization:localStorage.getItem('bignewsToken')},
