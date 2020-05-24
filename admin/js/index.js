@@ -9,6 +9,7 @@ $(function () {
             if(res.code===200){
                 $('.user_info img').prop('src',res.data.userPic)
                 $('.user_info span').html(`欢迎&nbsp;&nbsp${res.data.nickname}`)
+                $('.header_bar img').prop('src',res.data.userPic)
             }else{
                 alert('服务器出错')
             }

@@ -31,19 +31,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>奇趣事</td>
-                        <td>funny</td>
-                        <td class="text-center">
-                            <a href="javascript:void(0)" data-toggle="modal" class=" btn btn-info btn-xs">编辑</a>
-                            <a href="javascript:void(0)" class="btn btn-danger btn-xs">删除</a>
-                        </td>
-                    </tr>
+
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="3" class="text-center">
-                            <a href="javascript:void(0)" class="btn btn-success" id="xinzengfenlei" data-toggle="modal"
+                            <a href="" class="btn btn-success" id="xinzengfenlei" data-toggle="modal"
                                 data-target="#myModal">新增分类</a>
                         </td>
                     </tr>
@@ -51,5 +44,51 @@
             </table>
         </div>
     </div>
+    <!-- 模态框 -->
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">新增分类</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <!-- 隐藏域 -->
+                        <input type="hidden" name="id" id="id">
+                        <div class="form-group">
+                            <label for="recipient-name" class="control-label name">名称</label>
+                            <input type="text" class="form-control name-content" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label category">类别</label>
+                            <input type="text" class="form-control category-content" id="recipient-name">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary affirm">确定</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <script type="text/template" id="articleTemp">
+        {{each data item i}}
+        <tr>
+            <td>{{item.name}}</td>
+            <td>{{item.slug}}</td>
+            <td class="text-center">
+                <input type="button" data-toggle="modal" class="btn btn-info btn-xs btn-edit" data-toggle="modal"
+                data-target="#myModal" data-name="{{item.name}}" data-slug="{{item.slug}}" data-id="{{item.id}}" value="编辑">
+                <input type="button" class="btn btn-danger btn-xs btn-del" data-id="{{item.id}}" value="删除">
+            </td>
+        </tr>
+        {{/each}}
+    </script>
+    <script src="./libs/http.js"></script>
+    <script src="./js/article_category.js"></script>
+</body>
 
 </html>
