@@ -3,13 +3,13 @@ $(function () {
     //请求地址：/admin/article/query
     // 请求方式：get
     let page=1
-    let perpage=10
+    let perpage=6
     function init() {
         $.ajax({
             url: BigNew.article_query,
             type:'get',
             dataType:'json',
-            data:{page,perpage},
+            data:{page,perpage,type:$('#selCategory').val(),state:$('#selStatus').val()},
             success:(res)=>{
                 console.log(res);
                 $('tbody').html(template('articleListTemp',res.data))
@@ -45,5 +45,27 @@ $(function () {
             }
         })
     }
+
+
+//查询所有文章类别
+//     请求地址：/admin/category/list
+// 请求方式：get
+$.ajax({
+    url:BigNew.category_list,
+    dataType:'json',
+    success:(res)=>{
+        console.log(res);
+        $('#selCategory').html(template('art-list-temp',res))
+    }
+})
+
+//筛选
+$('#btnSearch').on('click',(e)=>{
+    e = window.event || e;
+    e.preventDefault()
+    page=1//重置当前页
+    init()
+})
+
 
 })
