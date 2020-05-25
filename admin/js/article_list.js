@@ -5,6 +5,8 @@ $(function () {
     let page=1
     let perpage=6
     function init() {
+        // console.log({page,perpage,type:$('#selCategory').val(),state:$('#selStatus').val()});
+        // {page: 1, perpage: 6, type: null, state: ""}  //null在后台条件判断也是false
         $.ajax({
             url: BigNew.article_query,
             type:'get',
@@ -62,10 +64,33 @@ $.ajax({
 //筛选
 $('#btnSearch').on('click',(e)=>{
     e = window.event || e;
-    e.preventDefault()
+    e.preventDefault() //input-submit button有默认提交效果
     page=1//重置当前页
     init()
 })
 
+//删除
+// 请求地址：/admin/article/delete
+// 请求方式：post
 
+$('tbody').on('click','.delete',function(e){
+    e = window.event || e;
+    e.preventDefault()
+    let id=$(this).data('id')
+    $.ajax({
+        url:BigNew.article_delete,
+        type:'post',
+        data:{id},
+        dataType:'json',
+        success:(res)=>{
+            if($('tbody').find('tr').length===1&&page>1) page--
+            init()
+        }
+    })
+})
+$('#release_btn').on('click',function () {
+    // $() jq选择器的第二个参数其实是document文档，一般不写默认就是当前页面的document。如果希望找到父window的元素，则可以添加第二个参数
+    $('.level02 li',window.parent.document).eq(1).trigger('click')
+    
+})
 })

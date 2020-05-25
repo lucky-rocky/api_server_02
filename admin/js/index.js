@@ -38,7 +38,7 @@ $(function () {
 
     })
 
-    $('.level02 li').on('click',function () {
+    $('.level02 li').on('click',function () {//注意点击事件只是切换了类名(样式),页面的跳转在a标签上
         $(this).addClass('active').siblings('li').removeClass('active')
     })
 
