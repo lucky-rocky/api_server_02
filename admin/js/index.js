@@ -42,7 +42,11 @@ $(function () {
         $(this).addClass('active').siblings('li').removeClass('active')
     })
 
-
+    //退出
+    $('.logout').on('click',function () {
+        localStorage.removeItem('bignewsToken')
+        location='./login.html'
+    })
 
 
 })
